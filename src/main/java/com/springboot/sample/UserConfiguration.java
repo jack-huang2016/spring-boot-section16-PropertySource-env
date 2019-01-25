@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 import org.springframework.core.env.Environment;
 import com.springboot.sample.entity.MgrParamScope;
 
@@ -14,7 +15,12 @@ import com.springboot.sample.entity.MgrParamScope;
  *
  */
 @Configuration
-@PropertySource(value = {"classpath:user.properties","classpath:user2.properties"},ignoreResourceNotFound = false, encoding = "UTF-8")
+@PropertySources({
+	@PropertySource(value = "classpath:user.properties",ignoreResourceNotFound = false, encoding = "UTF-8"),
+	@PropertySource(value = "classpath:user2.properties",ignoreResourceNotFound = false, encoding = "UTF-8")
+})
+//也可以不使用@PropertySources，而继续使用@PropertySource的方式，如下所示：
+//@PropertySource(value = {"classpath:user.properties","classpath:user2.properties"},ignoreResourceNotFound = false, encoding = "UTF-8")
 public class UserConfiguration {
 
 	@Autowired 
